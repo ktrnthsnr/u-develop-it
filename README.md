@@ -21,9 +21,9 @@ Command-line application connected to a database.
 - After cloning the GitHub repo to your local drive, run the following in the VSCode command-line terminal
 - Install npm
 - $ npm init -y
-- Create a .gitignore file in the root and add node_modules to this file
 - Install npm Inquirer, for more info https://www.npmjs.com/package/inquirer
 - $ npm install inquirer
+- Create a .gitignore file in the root and add node_modules to this file
 - Install Express.js
 - $ npm install express --save or $ npm i express
 - If you need to re-add the dependencies, run $ npm install
