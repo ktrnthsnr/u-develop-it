@@ -1,2 +1,2 @@
 # u-develop-it
-Database connected application.
+Database connected application
