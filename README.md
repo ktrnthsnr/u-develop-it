@@ -8,8 +8,8 @@ https://github.com/ktrnthsnr/u-develop-it
 * [Description](#description)
 * [Installations](#installations)
 * [Usage](#usage)
+* [Test](#test)
 * [Technology](#technology)
-* [Schema](#schema)
 * [Contribution](#contribution)
 
 ## Description
@@ -51,9 +51,6 @@ This repo contains a command-line voting application, consisting of an Express.j
 
 ## Technology
 SQLite3, Node.js, Express.js, npm, Inquirer, Jest, JavaScript, ES6, HTML, CSS
-
-## Schema
--- Tables
 
 ## Contribution
 ktrnthsnr
