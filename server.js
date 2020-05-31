@@ -37,8 +37,10 @@ app.get('/', (req, res) => {
   });
 
 
-// -- Get all candidates, wrapped in an Express.js route
-   // --- test: 1) restart server $ npm start 2) open browser http://localhost:3001/api/candidates
+// -- API Endpoint to | get ALL candidates, a select statement wrapped in an Express.js get route
+   // --- Test if working: 
+    // -- 1) restart server $ npm start 
+    // -- 2) open browser to local endpoint URL http://localhost:3001/api/candidates
 app.get('/api/candidates', (req, res) => {
     const sql = `SELECT * FROM candidates`;
     const params = [];
@@ -50,6 +52,46 @@ app.get('/api/candidates', (req, res) => {
       res.json({
         message: 'success',
         data: rows
+      });
+    });
+  });
+
+// -- API Endpoint to retrieve | Get single candidate 
+  // -- Test with sample ID=1: restart $ npm start then open browser to
+  // --  API endpoint http://localhost:3001/api/candidate/1
+app.get('/api/candidate/:id', (req, res) => {
+    const sql = `SELECT * FROM candidates 
+                 WHERE id = ?`;
+    const params = [req.params.id];
+    // -- database method get() or db.get is nested in an app.get
+    db.get(sql, params, (err, row) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }  
+      res.json({
+        message: 'success',
+        data: row
+      });
+    });
+  });
+
+
+// -- API Endpoint to | Delete a candidate
+  // -- Test with sample ID=1: restart $ npm start then open browser to
+  // --  API endpoint to test in Insomnia for ex: http://localhost:3001/api/candidate/1
+app.delete('/api/candidate/:id', (req, res) => {
+    const sql = `DELETE FROM candidates WHERE id = ?`;
+    const params = [req.params.id];
+    db.run(sql, params, function(err, result) {
+      if (err) {
+        res.status(400).json({ error: res.message });
+        return;
+      }
+  
+      res.json({
+        message: 'successfully deleted',
+        changes: this.changes
       });
     });
   });
@@ -81,7 +123,7 @@ app.use((req, res) => {
             // });
 
 
-// GET a single candidate
+// GET a single candidate, sample w/hardcoded WHERE id = 1
             // db.get(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
             //     if(err) {
             //       console.log(err);

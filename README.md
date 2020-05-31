@@ -13,10 +13,11 @@ https://github.com/ktrnthsnr/u-develop-it
 * [Contribution](#contribution)
 
 ## Description
-This repo contains a command-line voting application, consisting of an Express.js API and connection to a relational database. For this app, tables were created in SQLite, for candidates, parties, voters and votes, each with their own API endpoints. Node.js and JavaScript server-side scripts will connect to the database which will complete queries based on client requests, and respond with data to the end user. Main activities in this exercise includes:
-- Creating the sqlite db, tables and inserting data; and then creating the schema and seed sql scripts
-- Setting up Node.js with SQLite, and Jest tests
-- Creating the Express.js server and connecting the server to the SQLite database
+- This repo contains a command-line voting application, consisting of an Express.js API and connection to a relational database. For this app, tables were created in SQLite, with candidates, parties, and voter tables, each with their own API endpoints. Node.js and JavaScript server-side scripts connect to the database which run SQL queries based on client requests, and respond with data to the end user. 
+Main activities in this exercise includes:
+- Creating the SQLite db, tables and inserting data; and then creating the schema and seed sql scripts
+- Setting up Node.js with SQLite, Jest tests, and creating the Express.js server
+- Connecting the Express.js server to the SQLite database, and creating select statements wrapped in Express get routes
 
 ## Installations
 - If cloning to your repository, to setup please follow these instructions:
@@ -43,17 +44,21 @@ This repo contains a command-line voting application, consisting of an Express.j
 - $ sqlite3 
 - Open a db $ .open db/election.db 
 - Other common SQLite commands in the CLI include, $ .database, $ .schema, $ .tables
-- To view the colums and rows in the terinal, $ .header on, $ .mode column
-- To start the command-line application run
+- To view the colums and rows better in the terminal, $ .header on, $ .mode column
+- To exit sqlite, Ctrl-Z-Shift
+- To start the Express.js server, in the terminal enter this
 - $ npm start
 
 ## Test
-- Note: Test files provided for this exercise: /__tests__/inputCheck.test.js, /utils/inputCheck.js
-- Run a test in the terminal
+- Note: Jest test files provided for this exercise: /__tests__/inputCheck.test.js, /utils/inputCheck.js
+- Run a Jest test in the terminal
 - $ npm test
+- To validate local browser responses, test in the Insomnia tool at these endpoints
+- DELETE http://localhost:3001/api/candidate/1
+- GET http://localhost:3001/api/candidates
 
 ## Technology
-SQLite3, Node.js, Express.js, npm, Inquirer, Jest, JavaScript, ES6, HTML, CSS
+SQLite3, Node.js, Express.js, npm, Inquirer, Jest, Insomnia, JavaScript, ES6, HTML, CSS
 
 ## Contribution
 ktrnthsnr
