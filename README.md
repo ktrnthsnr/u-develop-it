@@ -13,7 +13,10 @@ https://github.com/ktrnthsnr/u-develop-it
 * [Contribution](#contribution)
 
 ## Description
-This repo contains a command-line voting application, consisting of an Express.js API and connection to a relational database. For this app, tables were created in SQLite, for candidates, parties, voters and votes, each with their own API endpoints. Node.js and JavaScript server-side scripts will connect to the database which will complete queries based on client requests, and respond with data to the end user.
+This repo contains a command-line voting application, consisting of an Express.js API and connection to a relational database. For this app, tables were created in SQLite, for candidates, parties, voters and votes, each with their own API endpoints. Node.js and JavaScript server-side scripts will connect to the database which will complete queries based on client requests, and respond with data to the end user. Main activities in this exercise includes:
+- Creating the sqlite db, tables and inserting data; and then creating the schema and seed sql scripts
+- Setting up Node.js with SQLite, and Jest tests
+- Creating the Express.js server and connecting the server to the SQLite database
 
 ## Installations
 - If cloning to your repository, to setup please follow these instructions:
