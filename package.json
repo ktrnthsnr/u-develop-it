@@ -4,7 +4,12 @@
   "description": "Database connected application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "migrate": "sqlite3 db/election.db < db/schema.sql",
+    "seed": "sqlite3 db/election.db < db/seeds.sql",
+    "db": "sqlite3 db/election.db",
+    "start": "node server.js",
+    "sqlcli": "sqlcli.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +24,10 @@
   "homepage": "https://github.com/ktrnthsnr/u-develop-it#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "inquirer": "^7.1.0"
+    "inquirer": "^7.1.0",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
   }
 }
