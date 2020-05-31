@@ -54,8 +54,8 @@ Main activities in this exercise includes:
 - Run a Jest test in the terminal
 - $ npm test
 - To validate local browser responses, test in the Insomnia tool at these endpoints
-- DELETE http://localhost:3001/api/candidate/1
-- GET http://localhost:3001/api/candidates
+- DELETE http://localhost:3003/api/candidate/1
+- GET http://localhost:3003/api/candidates
 
 ## Technology
 SQLite3, Node.js, Express.js, npm, Inquirer, Jest, Insomnia, JavaScript, ES6, HTML, CSS
