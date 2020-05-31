@@ -37,12 +37,12 @@ Main activities in this exercise includes:
 - If you need to re-add any of the npm dependencies, run $ npm install
 
 ## Usage
-- To create and seed the db, table and data, run 
+- To create and seed the db, tables and data, run
 - $ npm run migrate
 - $ npm run seed
 - To open the sqlite3 CLI
 - $ sqlite3 
-- Open a db $ .open db/election.db 
+- Open the database $ .open db/election.db 
 - Other common SQLite commands in the CLI include, $ .database, $ .schema, $ .tables
 - To view the colums and rows better in the terminal, $ .header on, $ .mode column
 - To exit sqlite, Ctrl-Z-Shift
