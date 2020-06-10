@@ -64,6 +64,36 @@ app.get('/api/candidates', (req, res) => {
     });
   });
 
+
+  // -- API Endpoint to update | PUT to update a single candidate , wrapped in an Express.js get route
+  // -- Test with sample ID=1: restart $ npm start then open browser to
+  // --  API endpoint to test in browser or Insomnia tool, PUT http://localhost:3003/api/candidate/1
+  app.put('/api/candidate/:id', (req, res) => {
+    // -- validate party_id was provided, check before sql variable declaration
+    const errors = inputCheck(req.body, 'party_id');
+      if (errors) {
+        res.status(400).json({ error: errors });
+        return;
+      }
+    // -- sql update statement
+    const sql = `UPDATE candidates SET party_id = ? 
+                 WHERE id = ?`;
+    const params = [req.body.party_id, req.params.id];
+  
+    db.run(sql, params, function(err, result) {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+  
+      res.json({
+        message: 'success',
+        data: req.body,
+        changes: this.changes
+      });
+    });
+  });
+
 // -- API Endpoint to retrieve | Get single candidate , wrapped in an Express.js get route
   // -- Test with sample ID=1: restart $ npm start then open browser to
   // --  API endpoint to test in browser or Insomnia tool, GET http://localhost:3003/api/candidate/1
@@ -71,7 +101,7 @@ app.get('/api/candidate/:id', (req, res) => {
     // -- added join query
     const sql = `SELECT candidates.*, parties.name 
              AS party_name 
-             FROM candidates 
+             FROM candidates
              LEFT JOIN parties 
              ON candidates.party_id = parties.id 
              WHERE candidates.id = ?`;
@@ -88,6 +118,83 @@ app.get('/api/candidate/:id', (req, res) => {
         message: 'success',
         data: row
       });
+    });
+  });
+
+
+  // -- parties route
+    app.get('/api/parties', (req, res) => {
+    const sql = `SELECT * FROM parties`;
+    const params = [];
+    db.all(sql, params, (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+  
+      res.json({
+        message: 'success',
+        data: rows
+      });
+    });
+  });
+
+  // -- party rout w\id parameter for a single party
+    // -- Test with sample ID=1: restart $ npm start then open browser to
+    // --  API endpoint to test in browser or Insomnia tool, GET http://localhost:3003/api/party/3
+  app.get('/api/party/:id', (req, res) => {
+    const sql = `SELECT * FROM parties WHERE id = ?`;
+    const params = [req.params.id];
+    db.get(sql, params, (err, row) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }  
+      res.json({
+        message: 'success',
+        data: row
+      });
+    });
+  });
+
+  // -- app.put for candidates to handle updates
+  app.put('/api/candidate/:id', (req, res) => {
+    const errors = inputCheck(req.body, 'party_id');
+    if (errors) {
+      res.status(400).json({ error: errors });
+      return;
+    }
+    
+    const sql = `UPDATE candidates SET party_id = ? 
+                 WHERE id = ?`;
+    const params = [req.body.party_id, req.params.id];
+  
+    db.run(sql, params, function(err, result) {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+  
+      res.json({
+        message: 'success',
+        data: req.body,
+        changes: this.changes
+      });
+    });
+  });
+
+  // -- add a delete route for parties 
+    // -- note 'db.run' is used with 'this.*'
+  app.delete('/api/party/:id', (req, res) => {
+    const sql = `DELETE FROM parties WHERE id = ?`;
+    const params = [req.params.id];
+    db.run(sql, params, function(err, result) {
+      if (err) {
+        res.status(400).json({ error: res.message });
+        return;
+      }
+  
+      res.json({ message: 'successfully deleted', changes: this.changes });
     });
   });
 

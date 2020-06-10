@@ -46,8 +46,8 @@ Main activities in this exercise includes:
 - Other common SQLite commands in the CLI include, $ .database, $ .schema, $ .tables
 - To view the colums and rows better in the terminal, $ .header on, $ .mode column
 - To exit sqlite, Ctrl-Z-Shift
-- To start the Express.js server, in the terminal enter this ($ npm start -or- $ node server.js)
-- $ npm start
+- To start the Express.js server, in the terminal run this ($ npm start -or- $ node server.js), which will invoke the package.json start script or "start": "node server.js"
+- $ npm start 
 
 ## Test
 - Note: Jest test files provided for this exercise: /__tests__/inputCheck.test.js, /utils/inputCheck.js
