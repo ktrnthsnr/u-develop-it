@@ -104,7 +104,7 @@ LEFT JOIN candidates ON votes.candidate_id = candidates.id
 LEFT JOIN parties ON candidates.party_id = parties.id
 GROUP BY candidate_id ORDER BY count DESC;
 
--- party affiliation
+-- aggregate - party affiliation
 SELECT candidates.*, parties.name AS party_name, COUNT(candidate_id) AS count
 FROM votes
 LEFT JOIN candidates ON votes.candidate_id = candidates.id
