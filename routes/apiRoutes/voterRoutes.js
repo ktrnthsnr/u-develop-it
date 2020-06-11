@@ -50,28 +50,32 @@ router.get('/voter/:id', (req, res) => {
             //     "last_name": "Cascade",
             //     "email": "aniko@email.com"
             // }
-router.post('/voter', ({ body }, res) => {
-    const errors = inputCheck(body, 'first_name', 'last_name', 'email');
+router.post('/vote', ({body}, res) => {
+    // Data validation 
+    const errors = inputCheck(body, 'voter_id', 'candidate_id');
     if (errors) {
         res.status(400).json({ error: errors });
         return;
-      }
-    const sql = `INSERT INTO voters (first_name, last_name, email) VALUES (?,?,?)`;
-    const params = [body.first_name, body.last_name, body.email];
-  
-    db.run(sql, params, function(err, data) {
-      if (err) {
+    }
+    
+    // Prepare statement
+    const sql = `INSERT INTO votes (voter_id, candidate_id) VALUES (?, ?)`;
+    const params = [body.voter_id, body.candidate_id];
+    
+    // Execute
+    db.run(sql, params, function(err, result) {
+        if (err) {
         res.status(400).json({ error: err.message });
         return;
-      }
-  
-      res.json({
+        }
+    
+        res.json({
         message: 'success',
         data: body,
         id: this.lastID
-      });
+        });
     });
-  });
+    });
 
 
 // -- PUT route  (UPDATE BY ID)
@@ -117,6 +121,30 @@ router.delete('/voter/:id', (req, res) => {
       }
   
       res.json({ message: 'deleted', changes: this.changes });
+    });
+  });
+
+
+  //-- GET route for /voters by party affiliation (SELECT aggregate sql query)
+    // -- validate in Insomnia http://localhost:3003/api/votes
+router.get('/votes', (req, res) => {
+    // const sql = `SELECT * FROM voters ORDER BY last_name`;
+    const sql = `SELECT candidates.*, parties.name AS party_name, COUNT(candidate_id) AS count
+    FROM votes
+    LEFT JOIN candidates ON votes.candidate_id = candidates.id
+    LEFT JOIN parties ON candidates.party_id = parties.id
+    GROUP BY candidate_id ORDER BY count DESC;`
+
+    const params = [];  
+    db.all(sql, params, (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }  
+      res.json({
+        message: 'success',
+        data: rows
+      });
     });
   });
 

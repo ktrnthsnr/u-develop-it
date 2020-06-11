@@ -81,9 +81,10 @@ INSERT INTO votes (voter_id, candidate_id) VALUES(2, 2);
 -- DELETE FROM voters WHERE id = 2;
 -- SELECT * FROM votes;
 
+-- seed to get total votes
 INSERT INTO votes (voter_id, candidate_id) 
 VALUES(3,1), (4,2), (5,2), (6,2), (7,2), (8,3), (9,3);
-
+-- then get count, aggregate function
 SELECT COUNT(candidate_id) FROM votes;
 
 -- aggregate query
@@ -96,7 +97,14 @@ LEFT JOIN candidates ON votes.candidate_id = candidates.id
 LEFT JOIN parties ON candidates.party_id = parties.id
 GROUP BY candidate_id;
 
--- aggregate - results by vote count
+-- aggregate - to gain party affiliation
+SELECT candidates.*, parties.name AS party_name, COUNT(candidate_id) AS count
+FROM votes
+LEFT JOIN candidates ON votes.candidate_id = candidates.id
+LEFT JOIN parties ON candidates.party_id = parties.id
+GROUP BY candidate_id ORDER BY count DESC;
+
+-- party affiliation
 SELECT candidates.*, parties.name AS party_name, COUNT(candidate_id) AS count
 FROM votes
 LEFT JOIN candidates ON votes.candidate_id = candidates.id

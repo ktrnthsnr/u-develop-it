@@ -29,8 +29,6 @@ Main activities in this exercise includes:
 or run $ `echo "node_modules/" > .gitignore`
 - Install npm packages for sqlite3 CLI
 - $ `npm install express sqlite3`
-- Install npm Inquirer, for more info https://www.npmjs.com/package/inquirer
-- $ `npm install inquirer`
 - Install Express.js (already installed in the previous step)
 - $ `npm install express --save` or $ `npm i express`
 - Install npm Jest, then update packages.json's script reference to "test": "jest"
@@ -66,12 +64,13 @@ or run $ `echo "node_modules/" > .gitignore`
 - Note: Jest test files provided for this exercise: /__tests__/inputCheck.test.js, /utils/inputCheck.js
 - Run a Jest test in the terminal
 - $ `npm test`
-- To validate local browser responses, test in the Insomnia tool at these endpoints
-- DELETE http://localhost:3003/api/candidate/1
-- GET http://localhost:3003/api/candidates
+- To test or validate local browser responses in the Insomnia tool, test these endpoints
+-   GET http://localhost:3003/api/candidates
+-   DELETE http://localhost:3003/api/candidate/1
+- More testing samples are included in the ./routes/apiRoutes/*.js files
 
 ## Technology
-SQLite3, Express.js, Node.js, npm, Inquirer, Jest, Insomnia, JavaScript, ES6, HTML, CSS
+SQLite3, Express.js, Node.js, npm, Jest, Insomnia, JavaScript, ES6, HTML, CSS
 
 ## Contribution
 ktrnthsnr
