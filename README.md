@@ -24,41 +24,54 @@ Main activities in this exercise includes:
 - Prereq: install VSCode, Node.js, and SQLite https://www.sqlite.org/download.html#win32
 - After cloning the GitHub repo to your local drive, run the following in the VSCode command-line terminal
 - Setup Node.js by installing npm
-- $ npm init -y
-- Then create .gitignore file in the root to add node_modules to this file, or run $ echo "node_modules/" > .gitignore.
+- $ `npm init -y`
+- Then create .gitignore file in the root to add node_modules to this file, 
+or run $ `echo "node_modules/" > .gitignore`
 - Install npm packages for sqlite3 CLI
-- $ npm install express sqlite3
+- $ `npm install express sqlite3`
 - Install npm Inquirer, for more info https://www.npmjs.com/package/inquirer
-- $ npm install inquirer
+- $ `npm install inquirer`
 - Install Express.js (already installed in the previous step)
-- $ npm install express --save or $ npm i express
+- $ `npm install express --save` or $ `npm i express`
 - Install npm Jest, then update packages.json's script reference to "test": "jest"
-- $ npm install jest --save-dev
-- If you need to re-add any of the npm dependencies, run $ npm install
+- $ `npm install jest --save-dev`
+- If you need to re-add any of the npm dependencies, run $ `npm install`
 
 ## Usage
 - To create and seed the db, tables and data, run
-- $ npm run migrate
-- $ npm run seed
-- To open the sqlite3 CLI
-- $ sqlite3 
-- Open the database $ .open db/election.db 
-- Other common SQLite commands in the CLI include, $ .database, $ .schema, $ .tables
-- To view the colums and rows better in the terminal, $ .header on, $ .mode column
+- $ `npm run migrate`
+- $ `npm run seed`
+- Install npm bodyParser
+ - $ `npm install body-parser`
+- To open the sqlite3 CLI or command line,
+- $ `sqlite3` 
+- Open the database 
+- sqllite> `.open db/election.db` 
+- Other common SQLite commands in the CLI include, 
+- sqllite> `.database`, sqllite> `.schema`, sqllite> `.tables`
+- To view the colums and rows better in the terminal, sqllite> `.header on`, sqllite> `.mode column`
+- To validate database, tables, and content after creating and seeding, enter in the SQLite2 CLI:
+- sqllite> `.open db/election.db`
+- sqllite> `.database` and 
+`.tables` and 
+`select * from parties;select * from candidates;select * from voters;`
 - To exit sqlite, Ctrl-Z-Shift
-- To start the Express.js server, in the terminal run this ($ npm start -or- $ node server.js), which will invoke the package.json start script or "start": "node server.js"
-- $ npm start 
+
+
+- To start the Express.js server, in the terminal run this ($ `npm start` or $ `node server.js`), which will invoke the package.json and start the JavaScript, run the following:
+- $ `npm start`
+- To exit the Express server, type Ctrl-C.
 
 ## Test
 - Note: Jest test files provided for this exercise: /__tests__/inputCheck.test.js, /utils/inputCheck.js
 - Run a Jest test in the terminal
-- $ npm test
+- $ `npm test`
 - To validate local browser responses, test in the Insomnia tool at these endpoints
 - DELETE http://localhost:3003/api/candidate/1
 - GET http://localhost:3003/api/candidates
 
 ## Technology
-SQLite3, Node.js, Express.js, npm, Inquirer, Jest, Insomnia, JavaScript, ES6, HTML, CSS
+SQLite3, Express.js, Node.js, npm, Inquirer, Jest, Insomnia, JavaScript, ES6, HTML, CSS
 
 ## Contribution
 ktrnthsnr
